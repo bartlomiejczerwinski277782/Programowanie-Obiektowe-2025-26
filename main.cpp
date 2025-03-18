@@ -23,21 +23,24 @@ void erase(){
 
 }
 void menu(){
+    double a,b;
+    string c;
+    cin>>a>>b>>c;
     switch (add,sub,tim,div,mod) {
         case add:
-            add(a,b)
+            add(a,b);
         case sub:
-            sub(a,b)
+            sub(a,b);
         case tim:
-            tim(a,b)
+            tim(a,b);
         case div:
-            div(a,b)
-        cas
+            div(a,b);
+        case mod:
+            mod(a,b);
 
     }
 }
 int main() {
-
-    void(menu);
+    void_menu();
 
 }
