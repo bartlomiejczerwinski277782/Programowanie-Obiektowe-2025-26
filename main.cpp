@@ -1,18 +1,36 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+class Kalkulator{
+public:
+
+};
+
 double mem;
 bool mem_used;
 double add(double a, double b){
+    mem = a + b;
+    mem_used=true;
     return a+b;
+
 }
 double sub(double a, double b){
+    mem = a - b;
+    mem_used=true;
     return a-b;
 }
 double tim(double a, double b){
+    mem = a * b;
+    mem_used=true;
     return a*b;
 }
 double div(double a, double b){
+    if( b==0 || a==0){
+    cerr<<"Nie wolno dzielić przez zero big nono!";
+    return 0;
+    }
+    mem = a / b;
+    mem_used=true;
     return a/b;
 }
 double mod(double a, double b){
@@ -20,27 +38,34 @@ double mod(double a, double b){
 }
 
 void erase(){
-
+ mem=0,0;
+ mem_used=false;
 }
 void menu(){
     double a,b;
-    string c;
-    cin>>a>>b>>c;
-    switch (add,sub,tim,div,mod) {
-        case add:
+    char input;
+    cout<<"Podaj dwie wartości i co chcesz obliczyć:";
+    cout<<"+: Dodawanie, - : odejmowanie, *: mnozenie,/: - dzielenie,%: pierwiastkowanie:";
+    cin>>a>>b>>input;
+    switch (input){
+        case '+':
             add(a,b);
-        case sub:
+            break;
+        case '-':
             sub(a,b);
-        case tim:
+            break;
+        case '*':
             tim(a,b);
-        case div:
+            break;
+        case '/':
             div(a,b);
-        case mod:
+            break;
+        case '%':
             mod(a,b);
-
+            break;
     }
 }
 int main() {
-    void_menu();
+    menu();
 
 }
