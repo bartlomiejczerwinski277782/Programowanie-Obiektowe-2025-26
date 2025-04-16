@@ -1,71 +1,61 @@
+
+#include "kalkulator.h"
 #include <iostream>
 #include <cmath>
-using namespace std;
-class Kalkulator{
-public:
-
-};
-
-double mem;
-bool mem_used;
-double add(double a, double b){
-    mem = a + b;
-    mem_used=true;
-    return a+b;
-
-}
-double sub(double a, double b){
-    mem = a - b;
-    mem_used=true;
-    return a-b;
-}
-double tim(double a, double b){
-    mem = a * b;
-    mem_used=true;
-    return a*b;
-}
-double div(double a, double b){
-    if( b==0 || a==0){
-    cerr<<"Nie wolno dzielić przez zero big nono!";
-    return 0;
-    }
-    mem = a / b;
-    mem_used=true;
-    return a/b;
-}
-double mod(double a, double b){
-    return a-(int)(a/b)*b;
-}
-
-void erase(){
- mem=0,0;
- mem_used=false;
-}
 void menu(){
+    Kalkulator kal;
     double a,b;
-    char input;
-    cout<<"Podaj dwie wartości i co chcesz obliczyć:";
-    cout<<"+: Dodawanie, - : odejmowanie, *: mnozenie,/: - dzielenie,%: pierwiastkowanie:";
-    cin>>a>>b>>input;
-    switch (input){
-        case '+':
-            add(a,b);
-            break;
-        case '-':
-            sub(a,b);
-            break;
-        case '*':
-            tim(a,b);
-            break;
-        case '/':
-            div(a,b);
-            break;
-        case '%':
-            mod(a,b);
-            break;
+    char opcja;
+    bool działania = true;
+    while(działania==true){
+        cout<<"Wybierz co chciałbyś robić:\n";
+        cout<<"+ :Dodawanie, - : odejmowanie, *: mnozenie,/: - dzielenie,%: pierwiastkowanie lub q -wyjscie, m - pamiec, e -usuwanie";
+        cin>>opcja;
+        if(opcja=='q'){
+            działania= false;
+        }
+        else if(opcja=='m'){
+            if(kal.isMemUsed()){
+                cout<<"twoja wartość:"<<kal.isMemUsed()<<"\n";
+            }
+            else{
+                cout<<"Nie zapisałeś nic byniu\n";
+            }
+        }
+        else if(opcja=='e'){
+            kal.erase();
+            cout<<"Magiku zniknołeś swoją pamięć\n";
+        }
+        else{
+            cout<<"Podaj dwie wartości i co chcesz obliczyć:";
+            cout<<"+: Dodawanie, - : odejmowanie, *: mnozenie,/: - dzielenie,%: pierwiastkowanie:";
+            cin>>a>>b;
+            switch (opcja){
+                case '+':
+                    cout<<kal.add(a,b);
+                    break;
+                case '-':
+                    cout<<kal.sub(a,b);
+                    break;
+                case '*':
+                    cout<<kal.tim(a,b);
+                    break;
+                case '/':
+                    cout<<kal.div(a,b);
+                    break;
+                case '%':
+                    cout<<kal.mod(a,b);
+                    break;
+                default:
+                    cerr<<"nie wiem co chcesz zrobic\n";
+
+
+            }
+        }
     }
 }
 int main() {
     menu();
+    return 0;
 
 }
